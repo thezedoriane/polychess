@@ -8,3 +8,17 @@ import chess.polyglot
 #set the initial position
 board = chess.Board()
 print(board)
+
+def deplacePlayer():
+    """Le joueur choisi son coup parmis les coups possible et l'effectue"""
+    print(possibilite)
+    print('Choose your movement')
+    board.push_san(input())
+    print(board)
+    
+    
+def deplaceIA() :
+    """l'IA trouve le meilleur choix de mouvement et l'execute"""
+    #meilleur choix sera une fonction qui recherchera le meilleur coup 
+    board.push_san(meilleur_choix())
+    print(board)
