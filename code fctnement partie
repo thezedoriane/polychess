@@ -25,6 +25,11 @@ def deplaceIA() :
     board.push_san(meilleur_choix())
     print(board)
     
+  #enregistrer chaque mouvement dans une liste  
+    coup=[]
+ for move in range(board.legal_moves.count()):
+      coup.append(move)
+      
     
 while board.game_over()==False
 #permet de verifier si la partie est terminée car au moins une des fonctions ci-dessous est verifié 
