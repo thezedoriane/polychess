@@ -24,3 +24,14 @@ def deplaceIA() :
     #meilleur choix sera une fonction qui recherchera le meilleur coup 
     board.push_san(meilleur_choix())
     print(board)
+    
+    
+while board.game_over()==False
+#permet de verifier si la partie est terminée car au moins une des fonctions ci-dessous est verifié 
+#is_checkmate() Vérifie si la position actuelle est un échec et mat
+#is_stalemate () Vérifie si la position actuelle est une impasse.
+#is_insufficient_material() Vérifie si aucune des parties n'a suffisamment de matériel gagnant
+#is_fivefold_repetition () si une position se produit pour la cinquième fois.
+#is_seventyfive_moves () si les joueurs jouent 75 coups sans déplacer un pion ou prendre une pièce adverse, la partie s'arrête.
+#can_claim_draw () Vérifie si le joueur a déplacé peut réclamer un match nul selon la règle des 75 coups ou 5 répétition
+#is_variant_end () Vérifie si le jeu est terminé en raison d'une condition spéciale de fin de variante.
