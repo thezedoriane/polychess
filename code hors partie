@@ -1,0 +1,3 @@
+# obtenir une evaluation de polychess à partir d'une position FEN
+print('position FEN')
+print(chess.Board(input()))
