@@ -8,6 +8,3 @@ import chess.polyglot
 #set the initial position
 board = chess.Board()
 print(board)
-
-
-
