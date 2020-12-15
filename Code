@@ -9,5 +9,7 @@ import chess.polyglot
 board = chess.Board()
 
 
+azerty
+
 
 
