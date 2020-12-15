@@ -9,6 +9,8 @@ import chess.polyglot
 board = chess.Board()
 print(board)
 
+#mouvement possible
+possibilite=board.legal_moves
 def deplacePlayer():
     """Le joueur choisi son coup parmis les coups possible et l'effectue"""
     print(possibilite)
