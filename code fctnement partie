@@ -11,12 +11,24 @@ print(board)
 
 #mouvement possible
 possibilite=board.legal_moves
+
 def deplacePlayer():
     """Le joueur choisi son coup parmis les coups possible et l'effectue"""
     print(possibilite)
     print('Choose your movement')
-    board.push_san(input())
-    print(board)
+    mvmt=input()
+    #si le mouvement choisis est possible on effectue le mouvement
+    if mvmt in possibilite:
+        board.push(mvmt)
+        print(board)
+    #sinon on demande de choisir un mouvement possible
+    else :
+        while mvmt not in possibilite :
+            print("le mouvement n'est pas permis, merci de choisir un mouvement parmis la liste suivante")
+            print(possibilite)
+            mvmt=input()
+        board.push(mvmt)
+        print(board)
     
     
 def deplaceIA() :
