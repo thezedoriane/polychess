@@ -54,6 +54,7 @@ def IAvsIA()
         elif meilleur_choix(board) in possibilite :
             nextmove=meilleur_choix(board)
             board.push(nextmove)
+        #si il y a game overon stop la partie
         if board.is_game_over():
             print("Game Over")
             print(board.result())
