@@ -1,3 +1,14 @@
+#python-chess import
+#https://github.com/niklasf/python-chess
+import chess
+
+#set the board to its initial position
+#corresponding to: rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1
+board = chess.Board()
+
+#print the board on the console
+print(board)
+
 # Si la position est dans Polyglot 
 # regarder les coups proposés avec les pondérations
 # jouer le coup     
@@ -29,4 +40,21 @@ def meilleur_choix(board):
                     ponderation = l_coup[i][1]
             #retourner le mouvement
             return l_coup[indice][0]
+
+def IAvsIA()
+    #tant que la partie n'est pas finie
+    while (not board.is_game_over()):
+        #on recupere la position
+        fen=board.fen()
+        #on recupere les coups possible
+        possibilite=board.legal_moves
+        #on regarde si la position est dans polyglot
+        if meilleur_choix(board)="il n'y a pas de mouvement":
+            #minimax
+        elif meilleur_choix(board) in possibilite :
+            nextmove=meilleur_choix(board)
+            board.push(nextmove)
+        if board.is_game_over():
+            print("Game Over")
+            print(board.result())
             
