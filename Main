@@ -1,12 +1,12 @@
-#python-chess import
+#python-chess import 
 #https://github.com/niklasf/python-chess
 import chess
 
-#set the board to its initial position
-#corresponding to: rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1
-board = chess.Board()
+#used to access Polyglot book
+import chess.polyglot
 
-#print the board on the console
+#set the initial position
+board = chess.Board()
 print(board)
 
 # Si la position est dans Polyglot 
