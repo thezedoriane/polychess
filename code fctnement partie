@@ -32,10 +32,7 @@ def deplaceIA() :
     board.push_san(meilleur_choix())
     print(board)
     
-  #enregistrer chaque mouvement dans une liste  
-    coup=[]
- for move in range(board.legal_moves.count()):
-      coup.append(move)
+
       
     
 while board.game_over()==False
@@ -47,3 +44,11 @@ while board.game_over()==False
 #is_seventyfive_moves () si les joueurs jouent 75 coups sans déplacer un pion ou prendre une pièce adverse, la partie s'arrête.
 #can_claim_draw () Vérifie si le joueur a déplacé peut réclamer un match nul selon la règle des 75 coups ou 5 répétition
 #is_variant_end () Vérifie si le jeu est terminé en raison d'une condition spéciale de fin de variante.
+
+
+
+  #enregistrer chaque mouvement dans une liste  
+    moves = board.legal_moves
+    coup=[]
+ for move in moves:
+      coup.append(move)
