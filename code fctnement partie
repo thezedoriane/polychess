@@ -25,7 +25,7 @@ def minmax(depth,board,couleur):
         return evalb(board,couleur)
     else :
         for x in listMoves:
-            move=Move.from_uci(str(x))
+            move=chess.Move.from_uci(str(x))
             board.push(move)
             value=max(bestval,minmax(depth-1,board,couleur))
             if value>bestval:
