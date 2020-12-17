@@ -12,59 +12,6 @@ print(board)
 #mouvement possible
 possibilite=board.legal_moves
 
-def minmax(depth,board,couleur):
-    '''renvoie le meilleur coup à faire en prévision du résultat des depth prochain coups a partir du plateau actuel
-    pour le joueur couleur'''
-    bestval=-999999
-    bestmove=None
-    possiblesmoves=board.legal_moves
-    listMoves = []
-    for move in possiblesmoves:
-        listMoves.append(move)
-    if depth==0:
-        return evalb(board,couleur)
-    else :
-        for x in listMoves:
-            move=chess.Move.from_uci(str(x))
-            board.push(move)
-            value=max(bestval,minmax(depth-1,board,couleur))
-            if value>bestval:
-                bestval=value
-                bestmove=move
-    return bestmove
-        
-def evalb(board,couleur):
-    '''renvoie la valeur d'un plateau en fonction du nombre de piece restante
-    demande le plateau et la couleur du joueur demandant le meilleur coup 
-    (regarder comment appeler la couleur) '''
-    evalb=0
-    for pos in range(64):
-        if board.piece_at(pos).color==couleur: 
-            evalb+=getPieceValue(str(board.piece_at(pos)))
-        else:
-            evalb-=getPieceValue(str(board.piece_at(pos)))
-    return evalb
-    
-       
-def getPieceValue(piece):
-        '''renvoie la valeur de la piece'''
-        if(piece == None):
-            return 0
-        value = 0
-        if piece == "P" or piece == "p":
-            value = 1
-        if piece == "N" or piece == "n":
-            value = 3
-        if piece == "B" or piece == "b":
-            value = 3
-        if piece == "R" or piece == "r":
-            value = 6
-        if piece == "Q" or piece == "q":
-            value = 9
-        if piece == 'K' or piece == 'k':
-            value = 10000 
-        return value
-        
 def deplacePlayer():
     """Le joueur choisi son coup parmis les coups possible et l'effectue"""
     print(listeCoups)
