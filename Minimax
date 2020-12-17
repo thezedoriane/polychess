@@ -12,7 +12,7 @@ print(board)
 #mouvement possible
 possibilite=board.legal_moves
 
-def minmax(depth,board,couleur):
+def minmax(depth,board):
     '''renvoie le meilleur coup à faire en prévision du résultat des depth prochain coups a partir du plateau actuel
     pour le joueur couleur'''
     bestval=-999999
@@ -22,28 +22,27 @@ def minmax(depth,board,couleur):
     for move in possiblesmoves:
         listMoves.append(move)
     if depth==0:
-        return evalb(board,couleur)
+        return evalb(board)
     else :
         for x in listMoves:
             move=chess.Move.from_uci(str(x))
             board.push(move)
-            value=max(bestval,minmax(depth-1,board,couleur))
+            value=max(bestval,minmax(depth-1,board))
             if value>bestval:
                 bestval=value
                 bestmove=move
     return bestmove
         
-def evalb(board,couleur):
-    '''renvoie la valeur d'un plateau en fonction du nombre de piece restante
-    demande le plateau et la couleur du joueur demandant le meilleur coup 
-    (regarder comment appeler la couleur) '''
+def evalb(board):
+    '''renvoie la valeur d'un plateau en fonction du nombre de piece restante demande le plateau '''
     evalb=0
     for pos in range(64):
-        if board.piece_at(pos).color==couleur: 
+        if board.piece_at(pos).color: 
             evalb+=getPieceValue(str(board.piece_at(pos)))
         else:
             evalb-=getPieceValue(str(board.piece_at(pos)))
     return evalb
+    
     
        
 def getPieceValue(piece):
