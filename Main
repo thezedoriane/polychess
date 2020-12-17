@@ -50,7 +50,8 @@ def IAvsIA():
         possibilite=board.legal_moves
         #on regarde si la position est dans polyglot
         if meilleur_choix(board) == "il n'y a pas de mouvement":
-            #minimax
+            nextmove=minmax(5,board)
+            board.push(nextmove)
         elif meilleur_choix(board) in possibilite :
             nextmove=meilleur_choix(board)
             board.push(nextmove)
@@ -74,7 +75,8 @@ def IAvsHumain():
            print(board.result())
        #tour IA
        if meilleur_choix(board) == "il n'y a pas de mouvement":
-           #minimax
+           nextmove=minmax(5,board)
+           board.push(nextmove)
        elif meilleur_choix(board) in possibilite :
            nextmove=meilleur_choix(board)
            board.push(nextmove)
