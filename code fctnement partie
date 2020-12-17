@@ -17,18 +17,13 @@ def deplacePlayer():
     print(possibilite)
     print('Choose your movement')
     mvmt=input()
-    #si le mouvement choisis est possible on effectue le mouvement
-    if mvmt in possibilite:
-        board.push(mvmt)
-        print(board)
-    #sinon on demande de choisir un mouvement possible
-    else :
-        while mvmt not in possibilite :
-            print("le mouvement n'est pas permis, merci de choisir un mouvement parmis la liste suivante")
-            print(possibilite)
-            mvmt=input()
-        board.push(mvmt)
-        print(board)
+    #tant que le mouvement n'est pas possible on en demande un possible
+    while mvmt not in possibilite :
+        print("le mouvement n'est pas permis, merci de choisir un mouvement parmis la liste suivante")
+        print(possibilite)
+        mvmt=input()
+    board.push_san(mvmt)
+    print(board)
     
     
 def deplaceIA() :
