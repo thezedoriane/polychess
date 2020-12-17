@@ -41,7 +41,7 @@ def meilleur_choix(board):
             #retourner le mouvement
             return l_coup[indice][0]
 
-def IAvsIA()
+def IAvsIA():
     #tant que la partie n'est pas finie
     while (not board.is_game_over()):
         #on recupere la position
@@ -49,12 +49,11 @@ def IAvsIA()
         #on recupere les coups possible
         possibilite=board.legal_moves
         #on regarde si la position est dans polyglot
-        if meilleur_choix(board)="il n'y a pas de mouvement":
+        if meilleur_choix(board) == "il n'y a pas de mouvement":
             #minimax
         elif meilleur_choix(board) in possibilite :
             nextmove=meilleur_choix(board)
             board.push(nextmove)
-        #si il y a game overon stop la partie
         if board.is_game_over():
             print("Game Over")
             print(board.result())
