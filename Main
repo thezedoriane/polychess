@@ -58,3 +58,30 @@ def IAvsIA():
             print("Game Over")
             print(board.result())
             
+            
+def IAvsHumain():
+       #tant que la partie n'est pas finie
+       while (not board.is_game_over()):
+       #on recupere la position
+       fen=board.fen()
+       #on recupere les coups possible
+       possibilite=board.legal_moves
+       #tour humain
+       deplacePlayer()
+       #si game over la partie est finie
+       if board.is_game_over():
+           print("Game Over")
+           print(board.result())
+       #tour IA
+       if meilleur_choix(board) == "il n'y a pas de mouvement":
+           #minimax
+       elif meilleur_choix(board) in possibilite :
+           nextmove=meilleur_choix(board)
+           board.push(nextmove)
+       if board.is_game_over():
+           print("Game Over")
+           print(board.result()
+       #si game over la partie est finie
+       if board.is_game_over():
+           print("Game Over")
+           print(board.result())    
