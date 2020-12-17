@@ -67,16 +67,19 @@ def getPieceValue(piece):
         
 def deplacePlayer():
     """Le joueur choisi son coup parmis les coups possible et l'effectue"""
-    print(possibilite)
-    print('Choose your movement')
-    mvmt=input()
-    #tant que le mouvement n'est pas possible on en demande un possible
-    while mvmt not in possibilite :
-        print("le mouvement n'est pas permis, merci de choisir un mouvement parmis la liste suivante")
-        print(possibilite)
-        mvmt=input()
-    board.push_san(mvmt)
-    print(board)
+    print(listeCoups)
+    print('Choisir un mouvement(n ecrire que la partie entre guillemets)')
+    mvmt=chess.Move.from_uci(input())
+    #on verifie que le mouvement est autorisé
+    if mvmt in board.legal_moves :
+        board.push(mvmt)
+        print(board)
+    else :
+        print("le mouvement n'est pas permis, merci de choisir un mouvement parmi la liste suivante (n ecrire que la partie entre guillemets)")
+        print(listeCoups)
+        mvmt=chess.Move.from_uci(input())
+        board.push(mvmt)
+        print(board)
     
     
 def deplaceIA() :
