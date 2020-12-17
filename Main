@@ -1,1 +1,32 @@
+# Si la position est dans Polyglot 
+# regarder les coups proposés avec les pondérations
+# jouer le coup     
 
+def meilleur_choix(board):
+    
+    #creer une liste coup
+    #c'est une liste composee par les listes
+    l_coup=[]
+    #access the Polyglot book
+    #entry.move() : les mouvement, representer par binaire
+    #entry.weight : les pondérations jouer le coup
+    #entry.learn : Une autre valeur entière qui peut être utilisée pour d'autres informations
+    with chess.polyglot.open_reader("bookfish.bin") as reader:
+        for entry in reader.find_all(board):
+            l_coup.append([entry.move(), entry.weight, entry.learn])
+
+        #dans la liste des coups, choisir le meilleur coups
+        ponderation = 0
+        indice = 0
+        if l_coup == []:
+            return "il n'y a pas de mouvement"
+        else:
+            for i in range (len(l_coup)):
+            # comparer le pondération pour chaque mouvement
+            #ponderation: l_coup[][1]
+                if l_coup[i][1] > ponderation :
+                    indice = i
+                    ponderation = l_coup[i][1]
+            #retourner le mouvement
+            return l_coup[indice][0]
+            
