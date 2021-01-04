@@ -15,6 +15,12 @@ possibilite=board.legal_moves
 
 def deplacePlayer(coup):
     """Le joueur choisi son coup parmis les coups possible et l'effectue"""
+    #creation du plateau et de la liste des mouvements possibles
+    board = chess.Board()
+    possibilite=board.legal_moves
+    listeCoups=[]
+    for x in possibilite:
+        listeCoups.append(x)
     print(listeCoups)
     print('Choisir un mouvement(n ecrire que la partie entre guillemets)')
     nextmove=chess.Move.from_uci(input())
@@ -28,7 +34,7 @@ def deplacePlayer(coup):
         coup.append(nextmove)
     # si il n'est pas autorise
     else :
-        #on demande un mouvement autorise puis on fait 
+        #on demande un mouvement autorise 
         print("le mouvement n'est pas permis, merci de choisir un mouvement parmi la liste suivante (n ecrire que la partie entre guillemets)")
         deplacePlayer(coup)
     
