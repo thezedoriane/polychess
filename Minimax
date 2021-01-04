@@ -12,27 +12,6 @@ print(board)
 #mouvement possible
 possibilite=board.legal_moves
 
-def minmax(depth,board):
-    '''renvoie le meilleur coup à faire en prévision du résultat des depth prochain coups a partir du plateau actuel
-    pour le joueur couleur'''
-    bestval=-999999
-    bestmove=None
-    possiblesmoves=board.legal_moves
-    listMoves = []
-    for move in possiblesmoves:
-        listMoves.append(move)
-    if depth==0:
-        return evalb(board)
-    else :
-        for x in listMoves:
-            move=chess.Move.from_uci(str(x))
-            board.push(move)
-            value=max(bestval,minmax(depth-1,board))
-            if value>bestval:
-                bestval=value
-                bestmove=move
-    return bestmove
-
 def alphabeta(depth,alpha,beta,board,player):
     '''on renvoie la valeur du coup en prenant en compte le choix de l'adversaire
     depth est le nombre de coup à l'avance que l'on veut prévoir
@@ -46,49 +25,66 @@ def alphabeta(depth,alpha,beta,board,player):
     for move in possiblesmoves:
         listMoves.append(move)  #création de la liste des mouvements
     if depth==0:
-        '''si on arrive au bout des depth coups on évalue le tableau'''
+        #si on arrive au bout des depth coups on évalue le tableau
         return evalb(board)
     else :
         if player:
+            #si c'est au tour du joueur on evalue chaque mouvement en appelant alphabeta pour les coups suivant
             for x in listMoves:
                 move=chess.Move.from_uci(str(x))
                 board.push(move)
                 value=alphabeta(depth-1,alpha,beta,board,not(player))
                 board.pop()
                 if value>=beta:
+                    #si la valeur obtenu est plus grande que beta on renvoie beta 
+                    #car on ne veut pas dépasser la valeur max du beta par rapport à l'autre joueur qui nous empechera de l'obtenir
                     return beta
                 if value>alpha:
+                    #si la valeur obtenue est plus grande que alpha on donne à alpha la valeur de value 
+                    #car on veut augmenter autant que possiblela limite inférieur de la valeur des coups
                     alpha=value
             return alpha
         else:
+            #si c'est au tour de l'adversaire on evalue chaque mouvement en appelant alphabeta pour les coups suivant
             for x in listMoves:
                 move=chess.Move.from_uci(str(x))
                 board.push(move)
                 value=alphabeta(depth-1,alpha,beta,board,not(player))
                 board.pop()
                 if value<=alpha:
+                    #si la valeur obtenu est plus petite que alpha on renvoie alpha
+                    #car on ne veut pas que le coup soit d'une valeur inférieur à la limite alpha, puisque le joueur va la contrée
                     return alpha
                 if value<beta:
+                    #si la valeur obtenue est inférieure à beta on donne à beta la valeur de value 
+                    #car l'adversaire va voulor au plus contré le joueur donc la limite max de meilleur coup beta diminue
                     beta=value
             return beta
 
 def choix_meilleur_coup_ab(board,depth):
-    '''Renvoie le meilleur mouvement à faire selon l'algorithme alphabeta
+    '''Renvoie la liste des meilleurs mouvements à faire selon l'algorithme alphabeta
     board est le tableau actuel, depth est la nombre de coup à l'avance que l'on veut prévoir'''
     possiblesmoves=board.legal_moves
     listMoves = []
     for move in possiblesmoves:
-        listMoves.append([move])
+        listMoves.append([move])  
+        #création de la liste des mouvements sous forme de sous liste 
+        #pour pouvoir leur attribuer une valeur par la suite
     for i in range (len(listMoves)):
+        #pour tous les mouvements possibles on effectue chacun leur tour les mouvements possibles
         move=chess.Move.from_uci(str(listMoves[i][0]))
         board.push(move)
         listMoves[i].append(alphabeta(depth,-99999,99999,board,True))
+        #on attribue à chaque mouvement sa valeur selon l'algorithme alphabeta pour depth coups à l'avance
         board.pop()
-    best=listMoves[0][1]
+        #on retire le mouvement effectuer pour revenir au tableau initial
+    best=listMoves[0][1]  
     for i in range(1,len(listMoves)):
+        #best est la valeur d'évaluation maximale des mouvements possibles
         best=max(listMoves[i][1],best)
     bestmoves=[]
     for i in range(len(listMoves)):
+        #bestmove est la liste des mouvements qui ont leur valeur associé égale à best, ce sont donc les meilleurs mouvements à jouer
         if listMoves[i][1]==best:
             bestmoves.append(listMoves[i][0]) 
     print(bestmoves)
