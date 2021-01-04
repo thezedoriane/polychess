@@ -50,8 +50,3 @@ while board.game_over()==False
 
 
 
-  #enregistrer chaque mouvement dans une liste  
-    moves = board.legal_moves
-    coup=[]
- for move in moves:
-      coup.append(move)
