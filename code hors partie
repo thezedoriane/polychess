@@ -18,3 +18,12 @@ chess.svg.board(board, lastmove)
 
 #print the board on the console
 print(board)
+
+
+
+#Afficher une partie sous format PGN et l'ouvrir dans un fichier texte
+game = chess.pgn.Game()
+
+new_pgn = open("test.txt", "w", encoding="utf-8")
+exporter = chess.pgn.FileExporter(new_pgn)
+game.accept(exporter)
