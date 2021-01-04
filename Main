@@ -5,6 +5,9 @@ import chess
 #used to access Polyglot book
 import chess.polyglot
 
+import chess.svg
+from IPython.display import SVG
+   
 #set the initial position
 board = chess.Board()
 print(board)
@@ -41,7 +44,10 @@ def meilleur_choix(board):
             #retourner le mouvement
             return l_coup[indice][0]
 
+
 def IAvsIA():
+    #liste permettant d'enregistrer les coups joues
+    coup=[]
     #tant que la partie n'est pas finie
     while (not board.is_game_over()):
         #on recupere la position
@@ -49,41 +55,59 @@ def IAvsIA():
         #on recupere les coups possible
         possibilite=board.legal_moves
         #on regarde si la position est dans polyglot
+        #si elle n'y est pas on utilise la fonction minmax pour trouver le meilleur coup
         if meilleur_choix(board) == "il n'y a pas de mouvement":
             nextmove=minmax(5,board)
             board.push(nextmove)
+            #affichage du plateau une fois le coup joue
+            display (SVG(chess.svg.board(board=board, lastmove=nextmove)))
+        #si elle y est on joue le meilleur coup
         elif meilleur_choix(board) in possibilite :
             nextmove=meilleur_choix(board)
             board.push(nextmove)
+            #affichage du plateau une fois le coup joue
+            display(SVG(chess.svg.board(board=board, lastmove=nextmove)))
+        #on enregistre le mouvement
+        coup.append(nextmove)
+        #si une des conditions d'arret du jeu est rempli la partie est fini et on affiche le resultat
         if board.is_game_over():
             print("Game Over")
             print(board.result())
-            
-            
+    
 def IAvsHumain():
-       #tant que la partie n'est pas finie
-       while (not board.is_game_over()):
-       #on recupere la position
-       fen=board.fen()
-       #on recupere les coups possible
-       possibilite=board.legal_moves
-       #tour humain
-       deplacePlayer()
-       #si game over la partie est finie
-       if board.is_game_over():
-           print("Game Over")
-           print(board.result())
-       #tour IA
-       if meilleur_choix(board) == "il n'y a pas de mouvement":
-           nextmove=minmax(5,board)
-           board.push(nextmove)
-       elif meilleur_choix(board) in possibilite :
-           nextmove=meilleur_choix(board)
-           board.push(nextmove)
-       if board.is_game_over():
-           print("Game Over")
-           print(board.result()
-       #si game over la partie est finie
-       if board.is_game_over():
-           print("Game Over")
-           print(board.result())    
+        #liste permettant d'enregistrer les coups joues
+        coup=[]
+        #tant que la partie n'est pas finie
+        while (not board.is_game_over()):
+            #on recupere la position
+            fen=board.fen()
+            #on recupere les coups possible
+            possibilite=board.legal_moves
+            #tour humain
+            deplacePlayer(coup)
+            #si game over la partie est finie
+            if board.is_game_over():
+                print("Game Over")
+                print(board.result())
+            #tour IA
+            #on regarde si la position est dans polyglot
+            #si elle n'y est pas on utilise la fonction minmax pour trouver le meilleur coup
+            if meilleur_choix(board) == "il n'y a pas de mouvement":
+                #minimax
+                nextmove=minmax(5,board)
+                board.push(nextmove)
+                #affichage du plateau une fois le coup joue
+                display(SVG(chess.svg.board(board=board, lastmove=nextmove)))
+            #si elle y est on joue le meilleur coup
+            elif meilleur_choix(board) in possibilite :
+                nextmove=meilleur_choix(board)
+                board.push(nextmove)
+                #affichage du plateau une fois le coup joue
+                display(SVG(chess.svg.board(board=board, lastmove=nextmove)))
+            #on enregistre le mouvement
+            coup.append(nextmove)
+            #si une des conditions d'arret du jeu est rempli la partie est fini et on affiche le resultat
+            if board.is_game_over():
+                print("Game Over")
+                print(board.result()
+       
