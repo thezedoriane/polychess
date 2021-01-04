@@ -1,3 +1,18 @@
 # obtenir une evaluation de polychess à partir d'une position FEN
 print('position FEN')
 print(chess.Board(input()))
+import chess
+import chess.svg
+import random
+import chess.pgn
+
+chess.svg.piece(chess.Piece.from_symbol("R"))
+
+#set the board to its initial position
+#corresponding to: rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1
+board = chess.Board()
+squares = board.attacks(chess.E4)
+chess.svg.board(board, squares=squares, size=350)
+
+#print the board on the console
+print(board)
