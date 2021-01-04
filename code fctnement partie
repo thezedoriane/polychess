@@ -12,21 +12,25 @@ print(board)
 #mouvement possible
 possibilite=board.legal_moves
 
-def deplacePlayer():
+
+def deplacePlayer(coup):
     """Le joueur choisi son coup parmis les coups possible et l'effectue"""
     print(listeCoups)
     print('Choisir un mouvement(n ecrire que la partie entre guillemets)')
-    mvmt=chess.Move.from_uci(input())
-    #on verifie que le mouvement est autorisé
-    if mvmt in board.legal_moves :
-        board.push(mvmt)
-        print(board)
+    nextmove=chess.Move.from_uci(input())
+    #si le mouvement est autorisé 
+    if nextmove in board.legal_moves :
+        #on effectue le mouvemment choisi
+        board.push(nextmove)
+        #on affiche le plateau
+        display(SVG(chess.svg.board(board=board, lastmove=nextmove)))
+        #on sauvegarde le coup
+        coup.append(nextmove)
+    # si il n'est pas autorise
     else :
+        #on demande un mouvement autorise puis on fait 
         print("le mouvement n'est pas permis, merci de choisir un mouvement parmi la liste suivante (n ecrire que la partie entre guillemets)")
-        print(listeCoups)
-        mvmt=chess.Move.from_uci(input())
-        board.push(mvmt)
-        print(board)
+        deplacePlayer(coup)
     
     
 def deplaceIA() :
