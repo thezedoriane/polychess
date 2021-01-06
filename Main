@@ -48,6 +48,7 @@ def meilleur_choix(board):
             return l_coup[indice][0]
 
 
+
 def alphabeta(depth,alpha,beta,board,player):
     '''on renvoie la valeur du coup en prenant en compte le choix de l'adversaire
     depth est le nombre de coup à l'avance que l'on veut prévoir
@@ -123,7 +124,7 @@ def choix_meilleur_coup_ab(board,depth):
         #bestmove est la liste des mouvements qui ont leur valeur associé égale à best, ce sont donc les meilleurs mouvements à jouer
         if listMoves[i][1]==best:
             bestmoves.append(listMoves[i][0]) 
-    print(bestmoves)
+    return bestmoves
 
 P=[[0,  0,  0,  0,  0,  0,  0,  0],
     [50, 50, 50, 50, 50, 50, 50, 50],
@@ -318,7 +319,8 @@ def IAvsIA():
     #liste permettant d'enregistrer les coups joues
     coup=[]
     #tant que la partie n'est pas finie
-    while (not board.is_game_over()):
+    while not(board.is_game_over()):
+        print ('algue')
         #on recupere la position
         fen=board.fen()
         #on recupere les coups possible
@@ -326,26 +328,28 @@ def IAvsIA():
         #on regarde si la position est dans polyglot
         #si elle n'y est pas on utilise la fonction minmax pour trouver le meilleur coup
         if meilleur_choix(board) == "il n'y a pas de mouvement":
+            print('surimi')
             #utilisation de alpha beta pour trouver le meilleur coup
-            depth=5
+            depth=3
             bestmove=choix_meilleur_coup_ab(board,depth)
-            nextmove=bestmove[random.randint(0, possibilite.count()-1)]
-            board.push(nextmove)
+            print(bestmove[0])
+            board.push(bestmove[0])
             #affichage du plateau une fois le coup joue
-            display (SVG(chess.svg.board(board=board, lastmove=nextmove)))
+            display (SVG(chess.svg.board(board=board, lastmove=bestmove[0])))
         #si elle y est on joue le meilleur coup
         elif meilleur_choix(board) in possibilite :
+            print('choco')
             nextmove=meilleur_choix(board)
             board.push(nextmove)
             #affichage du plateau une fois le coup joue
             display(SVG(chess.svg.board(board=board, lastmove=nextmove)))
+        print(board.is_game_over())
         #on enregistre le mouvement
         coup.append(nextmove)
-        #si une des conditions d'arret du jeu est rempli la partie est fini et on affiche le resultat
-        if board.is_game_over():
-            print("Game Over")
-            print(board.result())
-        #Afficher une partie sous format PGN et l'ouvrir dans un fichier texte
+    #si une des conditions d'arret du jeu est rempli la partie est fini et on affiche le resultat
+    print("Game Over")
+    print(board.result())
+    #Afficher une partie sous format PGN et l'ouvrir dans un fichier texte
     game = chess.pgn.Game()
     new_pgn = open("test.txt", "w", encoding="utf-8")
     exporter = chess.pgn.FileExporter(new_pgn)
@@ -401,4 +405,3 @@ def IAvsHumain():
     new_pgn = open("test.txt", "w", encoding="utf-8")
     exporter = chess.pgn.FileExporter(new_pgn)
     game.accept(exporter)
-       
