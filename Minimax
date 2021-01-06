@@ -215,9 +215,10 @@ def getPieceValue(piece,pos):
             return 0
         value = 0
         i=0
-        while pos>8:
+        while pos>7:
             pos-=8
             i+=1
+        i=7-i
         j=pos
         if piece == "P" :
             value = 100 + P[i][j]
