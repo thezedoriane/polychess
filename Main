@@ -353,8 +353,7 @@ def IAvsIA():
     
 def IAvsHumain():
     """programme pour que polychess joue contre un utilisateur"""
-    #initialisation du tableau et de la liste de coup possible
-    board = chess.Board()
+    #de la liste de coup possible
     possibilite=board.legal_moves
     listeCoups=[]
     for x in possibilite:
@@ -371,19 +370,18 @@ def IAvsHumain():
         deplacePlayer(coup)
         #si game over la partie est finie
         if board.is_game_over():
-            print("Game Over")
-            print(board.result())
+            break
         #tour IA
         #on regarde si la position est dans polyglot
         #si elle n'y est pas on utilise la fonction minmax pour trouver le meilleur coup
         if meilleur_choix(board) == "il n'y a pas de mouvement":
             #utilisation de alpha beta pour trouver le meilleur coup
-            depth=5
+            depth=3
             bestmove=choix_meilleur_coup_ab(board,depth)
-            nextmove=bestmove[random.randint(0, possibilite.count()-1)]
-            board.push(nextmove)
+            print(bestmove[0])
+            board.push(bestmove[0])
             #affichage du plateau une fois le coup joue
-            display(SVG(chess.svg.board(board=board, lastmove=nextmove)))
+            display (SVG(chess.svg.board(board=board, lastmove=bestmove[0])))
         #si elle y est on joue le meilleur coup
         elif meilleur_choix(board) in possibilite :
             nextmove=meilleur_choix(board)
@@ -393,9 +391,8 @@ def IAvsHumain():
         #on enregistre le mouvement
         coup.append(nextmove)
         #si une des conditions d'arret du jeu est rempli la partie est fini et on affiche le resultat
-        if board.is_game_over():
-            print("Game Over")
-            print(board.result())
+    print("Game Over")
+    print(board.result())
     #Afficher une partie sous format PGN et l'ouvrir dans un fichier texte
     game = chess.pgn.Game()
     new_pgn = open("test.txt", "w", encoding="utf-8")
