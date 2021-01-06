@@ -320,7 +320,7 @@ def IAvsIA():
     coup=[]
     #tant que la partie n'est pas finie
     while not(board.is_game_over()):
-        print ('algue')
+        #print ('algue')
         #on recupere la position
         fen=board.fen()
         #on recupere les coups possible
@@ -328,22 +328,22 @@ def IAvsIA():
         #on regarde si la position est dans polyglot
         #si elle n'y est pas on utilise la fonction minmax pour trouver le meilleur coup
         if meilleur_choix(board) == "il n'y a pas de mouvement":
-            print('surimi')
+            #print('surimi')
             #utilisation de alpha beta pour trouver le meilleur coup
             depth=3
             bestmove=choix_meilleur_coup_ab(board,depth)
-            print(bestmove[0])
-            board.push(bestmove[0])
+            nextmove=random.choice(bestmove)
+            board.push(nextmove)
             #affichage du plateau une fois le coup joue
-            display (SVG(chess.svg.board(board=board, lastmove=bestmove[0])))
+            display (SVG(chess.svg.board(board=board, lastmove=nextmove)))
         #si elle y est on joue le meilleur coup
         elif meilleur_choix(board) in possibilite :
-            print('choco')
+            #print('choco')
             nextmove=meilleur_choix(board)
             board.push(nextmove)
             #affichage du plateau une fois le coup joue
             display(SVG(chess.svg.board(board=board, lastmove=nextmove)))
-        print(board.is_game_over())
+        #print(board.is_game_over())
         #on enregistre le mouvement
         coup.append(nextmove)
     #si une des conditions d'arret du jeu est rempli la partie est fini et on affiche le resultat
