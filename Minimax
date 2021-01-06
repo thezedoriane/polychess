@@ -203,7 +203,7 @@ def evalb(board):
     for pos in range(64):
         if board.piece_at(pos)!=None:
             if board.piece_at(pos).color: 
-                evalb+=getPieceValue(str(board.piece_at(pos)))
+                evalb+=getPieceValue(str(board.piece_at(pos)),pos)
             else:
                 evalb-=getPieceValue(str(board.piece_at(pos)),pos)
     return evalb
