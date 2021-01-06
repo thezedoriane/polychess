@@ -30,7 +30,7 @@ def meilleur_choix(board):
     #entry.learn : Une autre valeur entière qui peut être utilisée pour d'autres informations
     with chess.polyglot.open_reader("bookfish.bin") as reader:
         for entry in reader.find_all(board):
-            l_coup.append([entry.move(), entry.weight, entry.learn])
+            l_coup.append([entry.move, entry.weight, entry.learn])
 
         #dans la liste des coups, choisir le meilleur coups
         ponderation = 0
