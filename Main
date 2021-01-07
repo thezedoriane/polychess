@@ -283,7 +283,6 @@ def getPieceValue(piece,pos):
             value = 20000 + k[i][j]
         return value
     
-    
 def deplacePlayer(coup):
     """Le joueur choisi son coup parmis les coups possible et l'effectue"""
     #creation du plateau et de la liste des mouvements possibles
@@ -307,7 +306,6 @@ def deplacePlayer(coup):
         #on demande un mouvement autorise 
         print("le mouvement n'est pas permis, merci de choisir un mouvement parmi la liste suivante (n ecrire que la partie entre guillemets)")
         deplacePlayer(coup)
-
 
 def IAvsIA():
     """programme pour que polychess joue contre lui meme"""
@@ -347,12 +345,17 @@ def IAvsIA():
     #si une des conditions d'arret du jeu est rempli la partie est fini et on affiche le resultat
     print("Game Over")
     print(board.result())
-    #Afficher une partie sous format PGN et l'ouvrir dans un fichier texte
-    game = chess.pgn.Game()
-    new_pgn = open("test.txt", "w", encoding="utf-8")
-    exporter = chess.pgn.FileExporter(new_pgn)
-    game.accept(exporter)
     
+    #Afficher une partie sous format PGN et l'ouvrir dans un fichier texte
+    #new_pgn = open("IAvsIA.txt", "w", encoding="utf-8")
+    #exporter = chess.pgn.FileExporter(new_pgn)
+    #game.accept(exporter)
+    
+    pgn = '[Event "IAvsIA"]' +'\n' + '[White "IA"]' +'\n' + '[Black "IA"]' + '\n' + 'result : ' + str(board.result()) \
+    + '\n' + 'Coups :' + str(coup) 
+    print(pgn)
+    file = open("iavsia.txt", "w")
+    file.write(pgn)
     
 def IAvsHumain():
     """programme pour que polychess joue contre un utilisateur"""
@@ -396,8 +399,15 @@ def IAvsHumain():
         #si une des conditions d'arret du jeu est rempli la partie est fini et on affiche le resultat
     print("Game Over")
     print(board.result())
+    
     #Afficher une partie sous format PGN et l'ouvrir dans un fichier texte
-    game = chess.pgn.Game()
-    new_pgn = open("test.txt", "w", encoding="utf-8")
-    exporter = chess.pgn.FileExporter(new_pgn)
-    game.accept(exporter)
+    #new_pgn = open("IAvsIA.txt", "w", encoding="utf-8")
+    #exporter = chess.pgn.FileExporter(new_pgn)
+    #game.accept(exporter)
+    
+    pgn = '[Event "IAvsHuman"]' +'\n' + '[White "Human"]' +'\n' + '[Black "IA"]' + '\n' + 'result :' + str(board.result()) \
+    + '\n' + 'Coups :' + str(coup) 
+    print(pgn)
+    file = open("iavshuman.txt", "w")
+    file.write(pgn)
+    
