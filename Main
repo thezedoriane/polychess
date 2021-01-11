@@ -297,7 +297,9 @@ def deplacePlayer(coup):
     if nextmove in board.legal_moves :
         #on effectue le mouvemment choisi
         board.push(nextmove)
-        #on affiche le plateau
+        #affichage du plateau une fois le coup joue 
+        #print(board)
+        #affichage du plateau une fois le coup joue au format SVG
         display(SVG(chess.svg.board(board=board, lastmove=nextmove)))
         #on sauvegarde le coup
         coup.append(nextmove)
@@ -331,13 +333,17 @@ def IAvsIA():
             bestmove=choix_meilleur_coup_ab(board,depth)
             print(bestmove[0])
             board.push(bestmove[0])
-            #affichage du plateau une fois le coup joue
+            #affichage du plateau une fois le coup joue 
+            #print(board)
+            #affichage du plateau une fois le coup joue au format SVG
             display (SVG(chess.svg.board(board=board, lastmove=bestmove[0])))
         #si elle y est on joue le meilleur coup
         elif meilleur_choix(board) in possibilite :
             nextmove=meilleur_choix(board)
             board.push(nextmove)
-            #affichage du plateau une fois le coup joue
+            #affichage du plateau une fois le coup joue 
+            #print(board)
+            #affichage du plateau une fois le coup joue au format SVG
             display(SVG(chess.svg.board(board=board, lastmove=nextmove)))
         print(board.is_game_over())
         #on enregistre le mouvement
@@ -386,7 +392,9 @@ def IAvsHumain():
             bestmove=choix_meilleur_coup_ab(board,depth)
             print(bestmove[0])
             board.push(bestmove[0])
-            #affichage du plateau une fois le coup joue
+            #affichage du plateau une fois le coup joue 
+            #print(board)
+            #affichage du plateau une fois le coup joue au format SVG
             display (SVG(chess.svg.board(board=board, lastmove=bestmove[0])))
         #si elle y est on joue le meilleur coup
         elif meilleur_choix(board) in possibilite :
