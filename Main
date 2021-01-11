@@ -400,7 +400,9 @@ def IAvsHumain():
         elif meilleur_choix(board) in possibilite :
             nextmove=meilleur_choix(board)
             board.push(nextmove)
-            #affichage du plateau une fois le coup joue
+            #affichage du plateau une fois le coup joue 
+            #print(board)
+            #affichage du plateau une fois le coup joue au format SVG
             display(SVG(chess.svg.board(board=board, lastmove=nextmove)))
         #on enregistre le mouvement
         coup.append(nextmove)
