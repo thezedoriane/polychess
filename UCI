@@ -1,0 +1,7 @@
+# ce fichier sera incomplet et comportera certainement des erreurs du au manque de temps
+
+import chess
+
+#ouvre un processus de moteur d'echec local
+engine = chess.uci.popen_engine("/usr/games/stockfish")
+engine.uci()
