@@ -8,4 +8,8 @@ engine = chess.uci.popen_engine("/usr/games/stockfish")
 engine.uci()
 #le moteur doit attendre la commande isready pour configurer ses parametres internes
 engine.isready()
+.
+.
+.
+non fini
   
