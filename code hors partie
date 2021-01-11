@@ -22,8 +22,17 @@ print(board)
 
 
 #Afficher une partie sous format PGN et l'ouvrir dans un fichier texte
-game = chess.pgn.Game()
+#IAVSIA
+    pgn = '[Event "IAvsIA"]' +'\n' + '[White "IA"]' +'\n' + '[Black "IA"]' + '\n' + 'result : ' + str(board.result()) \
+    + '\n' + 'Coups :' + str(coup) 
+    print(pgn)
+    file = open("iavsia.txt", "w")
+    file.write(pgn)
 
-new_pgn = open("test.txt", "w", encoding="utf-8")
-exporter = chess.pgn.FileExporter(new_pgn)
-game.accept(exporter)
+
+#IAVSHUMAIN
+    pgn = '[Event "IAvsHuman"]' +'\n' + '[White "Human"]' +'\n' + '[Black "IA"]' + '\n' + 'result :' + str(board.result()) \
+    + '\n' + 'Coups :' + str(coup) 
+    print(pgn)
+    file = open("iavshuman.txt", "w")
+    file.write(pgn)
