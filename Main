@@ -413,7 +413,7 @@ def IAvsHumain():
     #Afficher une partie sous format PGN et l'ouvrir dans un fichier texte
     #new_pgn = open("IAvsIA.txt", "w", encoding="utf-8")
     #exporter = chess.pgn.FileExporter(new_pgn)
-    #game.accept(exporter)
+    #game.accept(exporter) 
     
     pgn = '[Event "IAvsHuman"]' +'\n' + '[White "Human"]' +'\n' + '[Black "IA"]' + '\n' + 'result :' + str(board.result()) \
     + '\n' + 'Coups :' + str(coup) 
