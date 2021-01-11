@@ -4,4 +4,8 @@ import chess
 
 #ouvre un processus de moteur d'echec local
 engine = chess.uci.popen_engine("/usr/games/stockfish")
+#invite le moteur a utiliser l'interface uci
 engine.uci()
+#le moteur doit attendre la commande isready pour configurer ses parametres internes
+engine.isready()
+  
