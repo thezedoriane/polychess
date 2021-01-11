@@ -53,11 +53,11 @@ def alphabeta(depth,alpha,beta,board,player):
                 board.pop()
                 if value<=alpha:
                     #si la valeur obtenu est plus petite que alpha on renvoie alpha
-                    #car on ne veut pas que le coup soit d'une valeur inférieur à la limite alpha, puisque le joueur va la contrée
+                    #car on ne veut pas que le coup soit d'une valeur inférieur à la limite alpha, puisque le joueur va la contrer
                     return alpha
                 if value<beta:
                     #si la valeur obtenue est inférieure à beta on donne à beta la valeur de value 
-                    #car l'adversaire va voulor au plus contré le joueur donc la limite max de meilleur coup beta diminue
+                    #car l'adversaire va vouloir au plus contrer le joueur donc la limite max de meilleur coup beta diminue
                     beta=value
             return beta
 
